@@ -14,7 +14,89 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      cards: {
+        Row: {
+          core_idea: string
+          created_at: string
+          ef: number
+          id: string
+          interval: number
+          last_rating: number | null
+          next_review: string
+          questions: Json
+          review_count: number
+          source_text: string | null
+          tag: string
+          updated_at: string
+          user_id: string
+          why: string | null
+        }
+        Insert: {
+          core_idea: string
+          created_at?: string
+          ef?: number
+          id?: string
+          interval?: number
+          last_rating?: number | null
+          next_review?: string
+          questions?: Json
+          review_count?: number
+          source_text?: string | null
+          tag?: string
+          updated_at?: string
+          user_id: string
+          why?: string | null
+        }
+        Update: {
+          core_idea?: string
+          created_at?: string
+          ef?: number
+          id?: string
+          interval?: number
+          last_rating?: number | null
+          next_review?: string
+          questions?: Json
+          review_count?: number
+          source_text?: string | null
+          tag?: string
+          updated_at?: string
+          user_id?: string
+          why?: string | null
+        }
+        Relationships: []
+      }
+      reflections: {
+        Row: {
+          card_id: string
+          created_at: string
+          id: string
+          text: string
+          user_id: string
+        }
+        Insert: {
+          card_id: string
+          created_at?: string
+          id?: string
+          text: string
+          user_id: string
+        }
+        Update: {
+          card_id?: string
+          created_at?: string
+          id?: string
+          text?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reflections_card_id_fkey"
+            columns: ["card_id"]
+            isOneToOne: false
+            referencedRelation: "cards"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
